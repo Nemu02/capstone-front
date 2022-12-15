@@ -9,10 +9,9 @@ export default class NavigationContainer extends Component {
         return (
             <div>
                 <button>Home</button>
-                <button>About</button>
-                <button>Contact</button>
-                <button>Blog</button>
-                <button>Add Blog</button>
+                <button>Gear List</button>
+                <button>Issue/DeIssue</button>
+                <button>Add Members</button>
             </div>
         )
     }

@@ -1,0 +1,35 @@
+.app {
+    
+    .app-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 100px;
+        justify-content: center;
+        align-items: center;
+
+        .left {
+            margin-right: 50px;
+        }
+
+        .center {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: -50px;
+            
+        }
+
+
+
+
+        .right {
+            text-align: right;
+            margin-left: 50px;
+            img {
+                height: 100px;
+            }
+        }
+    }
+
+}
