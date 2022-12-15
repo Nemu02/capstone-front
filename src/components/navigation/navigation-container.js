@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom"
 
 export default class NavigationContainer extends Component {
     constructor() {
@@ -8,10 +9,21 @@ export default class NavigationContainer extends Component {
     render() {
         return (
             <div>
-                <button>Home</button>
-                <button>Gear List</button>
-                <button>Issue/DeIssue</button>
-                <button>Add Members</button>
+                <NavLink exact to="/" activeClassName="nav-link-active">
+                    Home
+                </NavLink>
+
+                <NavLink to="/gear-list" activeClassName="nav-link-active">
+                    Gear List
+                </NavLink>
+
+                <NavLink to="/member-list" activeClassName="nav-link-active">
+                    Member List
+                </NavLink>
+ 
+                {false ? <button>Issue/DeIssue</button> : null }
+                {false ? <button>Add Gear</button> : null }
+                {false ? <button>Add Member</button> : null }
             </div>
         )
     }
