@@ -20,8 +20,6 @@ export default class App extends Component {
 
         <Router>
           <div>
-            <h1>Neum Vento's Capstone Project</h1>
-
             <NavigationContainer />
 
             <Switch>

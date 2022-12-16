@@ -1,0 +1,48 @@
+.navigation-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding: 20px;
+    background-color: darkblue;
+
+    .nav-left {
+        display: flex;
+
+        .nav-link-wrapper {
+            height: 22px;
+            border-bottom: 1px solid transparent;
+            transition: 0.5s ease-in-out;
+
+            a {
+                color: goldenrod;
+                text-decoration: none;
+
+                &:hover {
+                    border-bottom: 2px solid crimson;
+                }
+            }
+        }
+
+    }
+
+    .nav-center {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-top: -30px;
+        color: aliceblue;
+
+        h4 {
+            margin-top: -21.28px;
+        }
+    }
+
+    .nav-right {
+        text-align: right;
+        img {
+            height: 100px;
+            
+        }
+    }
+}
+
