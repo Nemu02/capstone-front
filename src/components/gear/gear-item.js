@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function(props) {
+
+    const { id, nomenclature, gear_img, category } = props.item;
+
     return (
         <div>
-            <h3>{props.title}</h3>
-            <h4>{props.url}</h4>
-
-            <Link to={`/gear/${props.slug}`}>Link</Link>
+            <img src={gear_img} />
+            <div>{category}</div>
+            <div>{nomenclature}</div>
+            <Link to={`/gear/${id}`}>Link</Link>
         </div>
     )
 }
