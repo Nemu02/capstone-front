@@ -1,0 +1,14 @@
+.auth-page-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    height: calc(100vh - 164.5px);
+
+    .auth-left-side {
+        background-color: $lightgrey;
+    }
+
+    .auth-right-side {
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}

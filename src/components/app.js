@@ -10,6 +10,7 @@ import Home from './pages/home';
 import GearList from './pages/gear-list';
 import MemberList from './pages/member-list';
 import GearDetail from './gear/gear-detail';
+import Auth from './pages/auth';
 import NoMatch from "./pages/no-match";
 
 
@@ -24,6 +25,7 @@ export default class App extends Component {
 
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route path="/auth" component={Auth} />
               <Route path="/gear-list" component={GearList} />
               <Route path="/member-list" component={MemberList} />
               <Route 

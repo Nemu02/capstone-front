@@ -12,5 +12,34 @@
             height: 350px;
             width: 100%;
         }
+
+        .text-wrapper {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding-left: 100px;
+            padding-right: 100px;
+
+            .txt-container {
+                transition: 0.5s ease-in-out;
+                color: transparent;
+            }
+        }
+
+        .text-wrapper:hover .txt-container {
+            color: tan;
+            font-weight: 400;
+
+        }
     }
+}
+
+.image-blur {
+    transition: 1s;
+    filter: brightness(10%);
 }
