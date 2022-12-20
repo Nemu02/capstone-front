@@ -6,13 +6,8 @@ import chopperImg from "../../../static/assets/background/chopper.png";
 
 export default function() {
   return (
-    <div>
-      <h2>Homepage</h2>
-
+    <div className='home-img'>
       <img src={chopperImg} alt="logo" />
-
-
-      {/* <GearContainer /> */}
     </div>
   )
 }

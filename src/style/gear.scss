@@ -1,0 +1,16 @@
+.gear-items-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .gear-item-wrapper {
+        position: relative;
+
+        .gear-img-background {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 350px;
+            width: 100%;
+        }
+    }
+}
