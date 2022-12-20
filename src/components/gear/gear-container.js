@@ -64,8 +64,10 @@ export default class GearContainer  extends Component {
                 <button onClick={() => this.handleFilter('cold-weather')}>Cold Weather</button>
                 <button onClick={() => this.handleFilter('hot-weather')}>Hot Weather</button>
                 <button onClick={() => this.handleFilter('combat')}>Combat</button>
-
-                {this.gearItems()}
+                
+                <div className="gear-items-wrapper">
+                    {this.gearItems()}
+                </div>
             </div>
         )
     }
