@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 export default class Login extends Component {
     constructor(props) {
@@ -6,7 +7,8 @@ export default class Login extends Component {
 
         this.state = {
             email: "",
-            password: ''
+            password: '',
+            errorText: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,12 +18,53 @@ export default class Login extends Component {
     
     handleChange(event) {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
+            errorText: ''
         })
     }
     
     handleSubmit(event) {
-        console.log("submit", event)
+        axios.post("http://127.0.0.1:8000/user/verify", 
+        {
+                email: this.state.email,
+                password:this.state.password
+        }, 
+        { withCredentials: true}
+        ).then(response => {
+            if (response.data === "user verified") {
+                console.log("Welcome Back")
+                this.props.handleGoodAuth();
+            } else {
+                this.setState({
+                    errorText: "Wrong Email/Password"
+                });
+                this.props.handleBadAuth();
+            }
+        }).catch(error => {
+            console.log("error", error)
+            this.setState({
+                errorText: "An Error Occured!"
+            });
+            this.props.handleBadAuth();
+        })
+            
+        // fetch("http://127.0.0.1:8000/user/verify", {
+        //     method: "POST",
+        //     headers: {"content-type": "application/json"},
+        //     body: JSON.stringify({
+        //         email: this.state.email,
+        //         password: this.state.password
+        //     })
+        //     }).then(response => response.json())
+        //     .then(data => {
+        //         console.log("data", data)
+        //         this.setState({
+        //             errorText: "ummmm"
+        //         })
+        //     }).catch(error => {
+        //         console.log("fetch error", error);
+        //     })
+        
         event.preventDefault();
     }
     render() {
@@ -30,7 +73,7 @@ export default class Login extends Component {
             <h1>Secure Login for RMIS</h1>
             
             <form onSubmit={this.handleSubmit}>
-                DevilDog's Email
+                <div>DevilDog's Email</div>  
                 <input 
                     type="email" 
                     name='email'
@@ -39,7 +82,7 @@ export default class Login extends Component {
                     onChange={this.handleChange}
                 />
 
-                Password
+                <div>Password</div>
                 <input 
                     type="password"
                     name='password' 
@@ -54,6 +97,10 @@ export default class Login extends Component {
                 </div>
 
             </form>
+
+            <div>
+                {this.state.errorText}
+            </div>
         </div>
         )
     }
