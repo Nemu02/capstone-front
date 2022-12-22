@@ -1,0 +1,12 @@
+.edit-gear-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    .edit-gear-left {
+        background-color: rgb(176, 156, 129);
+    }
+    
+    .edit-gear-right {
+        background-color: tan;
+    }
+}
