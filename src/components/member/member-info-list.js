@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class MemberInfoList extends Component {
     constructor(props) {
@@ -13,7 +14,9 @@ export default class MemberInfoList extends Component {
                 <div className="text-wrapper">
                     <div className="txt-container">
                         <div>
-                            {name}  
+                            <Link to={`/i/${id}`}>
+                                {name} 
+                            </Link>
                         </div> 
 
                         <div>

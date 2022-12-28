@@ -13,38 +13,76 @@ export default class MemberForm extends Component {
             name: "",
             edipi: "",
             email: "",
-            phone_num: ""
+            phone_num: "",
+            editMode: false,
+            apiUrl: "http://127.0.0.1:5000/member/add",
+            apiAction: 'post'
+
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    
+    componentDidUpdate() {
+        if (Object.keys(this.props.memberToEdit).length > 0) {
+            const {
+                id,
+                name,
+                edipi,
+                email,
+                phone_num
+                // gear_img
+            } = this.props.memberToEdit;
+
+            this.props.clearMemberformToEdit();
+
+            this.setState({
+                id: id,
+                name: name || "",
+                edipi: edipi || "",
+                email: email || "",
+                phone_num: phone_num || "",
+                editMode: true,
+                apiUrl: `http://127.0.0.1:5000/member/edit/${id}`,
+                apiAction: 'put'
+                // gear_img
+            })
+        }
+    }
 
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-
+ 
     handleSubmit(event) {
-        axios.post('http://127.0.0.1:5000/member/add', 
-            JSON.stringify({
+        axios({
+            url: this.state.apiUrl,
+            method: this.state.apiAction,
+            headers: { "Content-Type": "application/json"},
+            data: JSON.stringify({
                 name: this.state.name,
                 edipi: this.state.edipi,
                 email: this.state.email,
                 phone_num: this.state.phone_num
             })
-        )
-        .then(response => {
-            this.props.handleGoodFormSubmit(response.data)
+        }).then(response => {
+            if (this.state.editMode) {
+                this.props.handleEditFormSubmit();
+            }else {
+                this.props.handleGoodFormSubmit(response.data)
+            }
             this.setState({ 
                 name: "",
                 edipi: "",
                 email: "",
-                phone_num: ""
-            })
+                phone_num: "",
+                editMode: false,
+                apiUrl: "http://127.0.0.1:5000/member/add",
+                apiAction: 'post'
+                })
             console.log("response", response)
         }).catch(error => {
             console.log("handleSubmit error", error)

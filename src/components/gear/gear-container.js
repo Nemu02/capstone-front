@@ -35,7 +35,7 @@ export default class GearContainer  extends Component {
                 return item.category === filter;
             })
         })
-    }
+    } 
 
     gearItems() {
         return this.state.data.map(item => {

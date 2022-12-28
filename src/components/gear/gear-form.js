@@ -7,7 +7,7 @@ import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-
+ 
 export default class GearForm extends Component {
     constructor(props) {
         super(props)
@@ -17,7 +17,10 @@ export default class GearForm extends Component {
             nsn: "",
             size: "",
             category: "",
-            gear_img: ""
+            gear_img: "",
+            editMode: false,
+            apiUrl: "http://127.0.0.1:5000/gear/add",
+            apiAction: 'post'
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -28,6 +31,33 @@ export default class GearForm extends Component {
         this.handleImageDrop = this.handleImageDrop.bind(this);
 
         this.imageRef = React.createRef();
+    }
+
+    componentDidUpdate() {
+        if (Object.keys(this.props.gearToEdit).length > 0) {
+            const {
+                id,
+                nomenclature,
+                nsn,
+                size,
+                category
+                // gear_img
+            } = this.props.gearToEdit;
+
+            this.props.clearGearformToEdit();
+
+            this.setState({
+                id: id,
+                nomenclature: nomenclature || "",
+                nsn: nsn || "",
+                size: size || "",
+                category: category || "",
+                editMode: true,
+                apiUrl: `http://127.0.0.1:5000/gear/edit/${id}`,
+                apiAction: 'put'    
+                // gear_img
+            })
+        }
     }
 
     handleImageDrop() {
@@ -73,25 +103,31 @@ export default class GearForm extends Component {
     }
 
     handleSubmit(event) {
-        axios.post(
-            'http://127.0.0.1:5000/gear/add', 
-            // this.buildForm()
-
-                (JSON.stringify({
+        axios({
+            url: this.state.apiUrl,
+            method: this.state.apiAction,
+            headers: { "Content-Type": "application/json"},
+            data: JSON.stringify({
                 category: this.state.category,
                 nomenclature: this.state.nomenclature,
                 nsn: this.state.nsn,
                 size: this.state.size,
-            }))
-        )
+            })
+        })
         .then(response => {
-            this.props.handleGoodFormSubmit(response.data)
-
+            if (this.state.editMode) {
+                this.props.handleEditFormSubmit();
+            }else {
+                this.props.handleGoodFormSubmit(response.data)
+            }
             this.setState({
                 nomenclature: "",
                 nsn: "",
                 size: "",
                 category: "",
+                editMode: false,
+                apiUrl: "http://127.0.0.1:5000/gear/add",
+                apiAction: 'post'    
             })
 
             [this.imageRef].forEach(ref => {

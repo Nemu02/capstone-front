@@ -1,5 +1,9 @@
 import { 
-    faPenToSquare
+    faPenToSquare,
+    faDeleteLeft,
+    faUserXmark,
+    faFilePen,
+    faUserPen
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -7,7 +11,11 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 
 const Icons = () => {
     return library.add(
-       faPenToSquare
+       faPenToSquare,
+       faDeleteLeft,
+       faUserXmark,
+       faFilePen,
+       faUserPen
     );
 }
 

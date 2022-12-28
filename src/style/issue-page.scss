@@ -1,0 +1,13 @@
+.issue-content {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    .left {
+        background-color: whitesmoke;
+    }
+
+    .right {
+        background-color: blanchedalmond;
+    }
+}
+

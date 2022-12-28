@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import MemberContainer from '../member/member-container';
 
-import MemberContainer from '../member/member-container'
+class MemberList extends Component {
+  constructor() {
+    super()
+  }
 
-export default function() {
-  return (
-    <div>
-      <h2>Member List</h2>
-
+  render() {
+    return (
       <MemberContainer />
-
-
-    </div>
-
-
-  )
+    )
+  }
 }
+
+export default MemberList;

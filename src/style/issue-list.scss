@@ -1,0 +1,29 @@
+.issue-table {
+    display: flex;
+
+    .issue-body {
+        display: grid;
+        grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
+
+        th {
+            font-size: 13px;
+            width: 100px;
+            border: solid 0.5px black;
+            text-align: center;
+        }
+    }
+
+}
+
+.issue-head {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
+    background-color: bisque;
+
+    th {
+        font-size: 14px;
+        width: 100px;
+        border: solid 1px black;
+        text-align: center;
+    }
+}
