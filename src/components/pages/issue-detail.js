@@ -12,14 +12,27 @@ class IssueDetail extends Component {
         this.state = {
             memberId: this.props.match.params.slug,
             issueMember: [],
-            issueItem: []
+            issueItems: []
         }
+
+        this.handleGoodFormSubmit = this.handleGoodFormSubmit.bind(this);
+        this.handleBadFormSubmit = this.handleBadFormSubmit.bind(this);
     }
+
+    handleGoodFormSubmit(issueItem) {
+        this.setState({
+          issueItems: [issueItem].concat(this.state.issueItems)
+        })
+    }
+
+    handleBadFormSubmit(error) {
+        console.log("handlebadsumbit error", error)
+      }
 
     getIssueMember() {
         axios
             .get(
-                `http://127.0.0.1:5000/member/get/${this.state.memberId}`
+                `https://capstone-back.herokuapp.com/member/get/${this.state.memberId}`
             ).then(response => {
                 console.log("response member", response)
 
@@ -34,11 +47,11 @@ class IssueDetail extends Component {
     getIssueItem() {
         axios
             .get(
-                `http://127.0.0.1:5000/member/get/${this.state.memberId}`
+                `https://capstone-back.herokuapp.com/member/get/${this.state.memberId}`
             ).then(response => {
                 console.log("response all_issues", response.data.all_issues)
                 this.setState({
-                    issueItem: response.data.all_issues
+                    issueItems: response.data.all_issues
                 });
             }).catch(error => {
                 console.log("GETISSUE error", error)
@@ -51,7 +64,7 @@ class IssueDetail extends Component {
     }
 
     issueItems() {
-        return this.state.issueItem.map(item => {
+        return this.state.issueItems.map(item => {
             console.log("issueitem", item)
             return(
                 <div>
@@ -100,6 +113,8 @@ class IssueDetail extends Component {
 
                     <div className='right'>
                         <IssueForm
+                            handleGoodFormSubmit={this.handleGoodFormSubmit}
+                            handleBadFormSubmit={this.handleBadFormSubmit}
                         />
                     </div>
                 </div>

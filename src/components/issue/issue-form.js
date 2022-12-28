@@ -27,7 +27,7 @@ export default class IssueForm extends Component {
     handleSubmit(event) {
         axios.
             post(
-                'http://127.0.0.1:5000/issue/add',
+                'https://capstone-back.herokuapp.com/issue/add',
                 JSON.stringify({
                     issue_nomenclature: this.state.issue_nomenclature,
                     member_id: this.state.member_id,
@@ -37,6 +37,7 @@ export default class IssueForm extends Component {
                     issue_size: this.state.issue_size
                 })
             ).then(response => {
+                this.props.handleGoodFormSubmit(response.data.all_issues)
                 console.log("response", response)
             }).catch(error => {
                 console.log('handleSubmit error', error)
@@ -102,6 +103,16 @@ export default class IssueForm extends Component {
                                 value={this.state.issue_count}
                                 onChange={this.handleChange}
                             />
+                        </div>
+                            <textarea
+                                type='text'
+                                name='issue_note'
+                                placeholder='note'
+                                value={this.state.issue_note}
+                                onChange={this.handleChange}
+                            />
+                        <div>
+
                         </div>
 
                         <div>

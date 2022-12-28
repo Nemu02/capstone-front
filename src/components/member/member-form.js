@@ -15,7 +15,7 @@ export default class MemberForm extends Component {
             email: "",
             phone_num: "",
             editMode: false,
-            apiUrl: "http://127.0.0.1:5000/member/add",
+            apiUrl: "https://capstone-back.herokuapp.com/member/add",
             apiAction: 'post'
 
         }
@@ -44,7 +44,7 @@ export default class MemberForm extends Component {
                 email: email || "",
                 phone_num: phone_num || "",
                 editMode: true,
-                apiUrl: `http://127.0.0.1:5000/member/edit/${id}`,
+                apiUrl: `https://capstone-back.herokuapp.com/member/edit/${id}`,
                 apiAction: 'put'
                 // gear_img
             })
@@ -80,7 +80,7 @@ export default class MemberForm extends Component {
                 email: "",
                 phone_num: "",
                 editMode: false,
-                apiUrl: "http://127.0.0.1:5000/member/add",
+                apiUrl: "https://capstone-back.herokuapp.com/member/add",
                 apiAction: 'post'
                 })
             console.log("response", response)

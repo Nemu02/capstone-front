@@ -18,7 +18,7 @@ export default class GearContainer  extends Component {
 
     getGearItems() {
         axios
-          .get("http://127.0.0.1:5000/gear/get")
+          .get("https://capstone-back.herokuapp.com/gear/get")
           .then(response => {
             this.setState({
                 data: response.data

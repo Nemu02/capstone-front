@@ -19,7 +19,7 @@ export default class GearForm extends Component {
             category: "",
             gear_img: "",
             editMode: false,
-            apiUrl: "http://127.0.0.1:5000/gear/add",
+            apiUrl: "https://capstone-back.herokuapp.com/gear/add",
             apiAction: 'post'
         }
 
@@ -53,7 +53,7 @@ export default class GearForm extends Component {
                 size: size || "",
                 category: category || "",
                 editMode: true,
-                apiUrl: `http://127.0.0.1:5000/gear/edit/${id}`,
+                apiUrl: `https://capstone-back.herokuapp.com/gear/edit/${id}`,
                 apiAction: 'put'    
                 // gear_img
             })
@@ -126,7 +126,7 @@ export default class GearForm extends Component {
                 size: "",
                 category: "",
                 editMode: false,
-                apiUrl: "http://127.0.0.1:5000/gear/add",
+                apiUrl: "https://capstone-back.herokuapp.com/gear/add",
                 apiAction: 'post'    
             })
 

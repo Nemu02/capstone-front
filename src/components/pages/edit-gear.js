@@ -36,7 +36,7 @@ export default class EditGear extends Component {
   }
 
   handleDeleteClick(gearItem) {
-    axios.delete(`http://127.0.0.1:5000/gear/delete/${gearItem.id}`
+    axios.delete(`https://capstone-back.herokuapp.com/gear/delete/${gearItem.id}`
     ).then(response => {
       this.setState({
         gearItems: this.state.gearItems.filter(item => {
@@ -66,7 +66,7 @@ export default class EditGear extends Component {
   }
 
   getGearItems() {
-    axios.get("http://127.0.0.1:5000/gear/get"
+    axios.get("https://capstone-back.herokuapp.com/gear/get"
     ).then(response => {
       this.setState({
         gearItems: [...response.data]

@@ -34,7 +34,7 @@ export default class EditMember extends Component {
   }
 
   handleDeleteMemberClick(memberInfoList) {
-    axios.delete(`http://127.0.0.1:5000/member/delete/${memberInfoList.id}`
+    axios.delete(`https://capstone-back.herokuapp.com/member/delete/${memberInfoList.id}`
     )
     .then(response => {
       this.setState({
@@ -64,7 +64,7 @@ export default class EditMember extends Component {
   }
 
   getMemberLists() {
-    axios.get("http://127.0.0.1:5000/member/get"
+    axios.get("https://capstone-back.herokuapp.com/member/get"
     ).then(response => {
       this.setState({
         memberInfoLists: [...response.data]

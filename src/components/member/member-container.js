@@ -17,7 +17,7 @@ export default class MemberContainer  extends Component {
 
     getMemberItems() {
         axios
-          .get("http://127.0.0.1:5000/member/get")
+          .get("https://capstone-back.herokuapp.com/member/get")
           .then(response => {
             this.setState({
                 data: response.data
