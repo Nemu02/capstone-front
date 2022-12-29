@@ -51,7 +51,7 @@ export default class MemberContainer  extends Component {
         }
         return (
             
-            <div className="gear-items-wrapper">
+            <div className='members-list'>
 
                 {this.memberInfoLists()}
             </div>

@@ -1,0 +1,13 @@
+.gear-page {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .filter-links {
+        display: flex;
+        justify-content: center;
+
+        button {
+            width: 100%;
+        }
+    }
+}
