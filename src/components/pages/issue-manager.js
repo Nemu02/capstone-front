@@ -15,7 +15,7 @@ class IssueManager extends Component {
             memberId: this.props.match.params.slug,
             issueMember: [],
             issueItems: [],
-            date: ""
+            date: moment().format('MMMM do YYYY'),
         }
 
         this.handleGoodFormSubmit = this.handleGoodFormSubmit.bind(this);
