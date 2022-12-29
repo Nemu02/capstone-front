@@ -89,7 +89,7 @@ class IssueManager extends Component {
             <div>
                 <div>
                     <h1>{name}</h1>
-                    <h2>{id}</h2>
+                    <h2>Member ID{id}</h2>
                 </div>
 
                 <div className='issue-content'>
