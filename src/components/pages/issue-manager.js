@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import JsPDF from 'jspdf';
+import moment from 'moment/moment';
 
 import IssueSidebarList from '../issue/issue-sidebar-list';
 import IssueForm from "../issue/issue-form";
 
 class IssueManager extends Component {
+    
     constructor(props) {
         super(props)
         
         this.state = {
             memberId: this.props.match.params.slug,
             issueMember: [],
-            issueItems: []
+            issueItems: [],
+            date: ""
         }
 
         this.handleGoodFormSubmit = this.handleGoodFormSubmit.bind(this);
         this.handleBadFormSubmit = this.handleBadFormSubmit.bind(this);
-        this.handleDeleteClick = this.handleDeleteClick.bind(this)
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.generatePDF = this.generatePDF.bind(this);
 
     }
+
+  
 
     handleDeleteClick(issueItem) {
         axios.delete(`https://capstone-back.herokuapp.com/issue/delete/${issueItem.id}`
@@ -36,7 +43,8 @@ class IssueManager extends Component {
 
     handleGoodFormSubmit(issueItem) {
         this.setState({
-            issueItems: [issueItem].concat(this.state.issueItems)
+            issueItems: [issueItem].concat(this.state.issueItems),
+            date: moment().format('MMMM do YYYY'),
         })
     }
 
@@ -76,24 +84,40 @@ class IssueManager extends Component {
         this.getIssueItems();
     }
 
+    generatePDF = () => {
 
+        const report = new JsPDF('landscape','pt','a4');
+        report.html(document.querySelector('#print')).then(() => {
+            report.save('IMR.pdf');
+        });
+    }
 
     render() {
         const {
             id,
             name,
             edipi,
+            email,
+            phone_num
         } = this.state.issueMember;
 
         return (
-            <div>
-                <div>
-                    <h1>{name}</h1>
-                    <h2>Member ID{id}</h2>
-                </div>
-
+            <div>   
                 <div className='issue-content'>
-                        <div className='left'>
+
+                        <div id='print' className='left'>
+
+                            <div className='header'>
+                                <div className='header-left'>
+                                    <h1>{name}</h1>
+                                    <h2>Member ID={id}</h2>
+                                </div>
+
+                                <div className='header-right'>
+                            
+                                    <h4>Email:{email} <br/> Edipi:{edipi} <br/> #Phone:{phone_num}</h4>
+                                </div>
+                            </div>
                             <div>
                                 <table>
                                     <thead>
@@ -112,16 +136,25 @@ class IssueManager extends Component {
                                 data={this.state.issueItems}
 
                             />
+                            <div>
+                                Date:{this.state.date}
+                            </div>
+
+
+                            <button onClick={this.generatePDF} type="button">Export PDF</button>
+              
                         </div>
+
 
                         <div className='right'>
                             <IssueForm 
                                 handleGoodFormSubmit={this.handleGoodFormSubmit}
                                 handleBadFormSubmit={this.handleBadFormSubmit}
-                            />
+                                />
                         </div>
-                    </div>
+               
                 </div>
+            </div>
         )
     }
 }
