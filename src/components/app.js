@@ -14,8 +14,8 @@ import EditGear from './pages/edit-gear';
 import MemberList from './pages/member-list';
 import EditMember from './pages/edit-member';
 import GearDetail from './gear/gear-detail';
-import IssueDetail from './pages/issue-detail';
-import IssueForm from './issue/issue-form';
+import IssueManager from './pages/issue-manager';
+// import IssueForm from './issue/issue-form';
 import Auth from './pages/auth';
 import NoMatch from "./pages/no-match";
 import Icons from './helpers/icons';
@@ -101,8 +101,8 @@ export default class App extends Component {
               <Route path="/edit-gear" component={EditGear} />
 
               <Route path="/member-list" component={MemberList} />
-              <Route path="/i/:slug" component={IssueDetail} />
-              <Route path="/i/:slug" component={IssueForm} />
+              <Route path="/i/:slug" component={IssueManager} />
+              {/* <Route path="/i/:slug" component={IssueForm} /> */}
               <Route path="/edit-member" component={EditMember} />
               <Route 
                 exact 

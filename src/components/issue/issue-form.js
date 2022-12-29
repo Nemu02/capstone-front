@@ -1,21 +1,22 @@
-import axios from 'axios';
 import React, { Component } from 'react'
+import axios from 'axios';
+
 
 export default class IssueForm extends Component {
     constructor(props) {
         super(props)
 
-        this.state= {
+        this.state = {
             issue_nomenclature: '',
             issue_nsn: "",
             issue_size: "",
             issue_count: "",
             issue_note: "",
+            member_id: ""
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     handleChange(event) {
@@ -37,15 +38,21 @@ export default class IssueForm extends Component {
                     issue_size: this.state.issue_size
                 })
             ).then(response => {
-                this.props.handleGoodFormSubmit(response.data.all_issues)
-                console.log("response", response)
+                this.props.handleGoodFormSubmit(response.data)
+
+                this.setState({
+                    issue_nomenclature: '',
+                    issue_nsn: "",
+                    issue_size: "",
+                    issue_count: "",
+                    issue_note: "",
+                    member_id: ""
+                })
             }).catch(error => {
                 console.log('handleSubmit error', error)
             })
         event.preventDefault();
-
-    }
-
+        }
     render() {
         return (
             <div>
@@ -124,7 +131,6 @@ export default class IssueForm extends Component {
                 </div>
 
             </div>
-
 
         )
     }

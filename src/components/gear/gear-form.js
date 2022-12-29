@@ -25,7 +25,6 @@ export default class GearForm extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.buildForm = this.buildForm.bind(this);
         this.componentConfig = this.componentConfig.bind(this);
         this.djsConfig = this.djsConfig.bind(this);
         this.handleImageDrop = this.handleImageDrop.bind(this);
@@ -40,8 +39,8 @@ export default class GearForm extends Component {
                 nomenclature,
                 nsn,
                 size,
-                category
-                // gear_img
+                category,
+                gear_img
             } = this.props.gearToEdit;
 
             this.props.clearGearformToEdit();
@@ -52,6 +51,7 @@ export default class GearForm extends Component {
                 nsn: nsn || "",
                 size: size || "",
                 category: category || "",
+                gear_img: gear_img || "",
                 editMode: true,
                 apiUrl: `https://capstone-back.herokuapp.com/gear/edit/${id}`,
                 apiAction: 'put'    
@@ -81,20 +81,20 @@ export default class GearForm extends Component {
         }
     }
 
-    buildForm() {
-        let formData = new FormData();
+    // buildForm() {
+    //     let formData = new FormData();
 
-        formData.append('nomenclature', this.state.nomenclature);
-        formData.append('nsn', this.state.nsn);
-        formData.append('size', this.state.size);
-        formData.append('category', this.state.category);
+    //     formData.append('nomenclature', this.state.nomenclature);
+    //     formData.append('nsn', this.state.nsn);
+    //     formData.append('size', this.state.size);
+    //     formData.append('category', this.state.category);
 
-        if (this.state.gear_img) {
-            formData.append("gear_img", this.state.thumb_image);
-          }
+    //     if (this.state.gear_img) {
+    //         formData.append("gear_img", this.state.thumb_image);
+    //       }
 
-        return JSON.stringify(formData);
-    }
+    //     return JSON.stringify(formData);
+    // }
 
     handleChange(event) {
         this.setState({
@@ -112,6 +112,7 @@ export default class GearForm extends Component {
                 nomenclature: this.state.nomenclature,
                 nsn: this.state.nsn,
                 size: this.state.size,
+                gear_img: this.state.gear_img
             })
         })
         .then(response => {
@@ -125,6 +126,7 @@ export default class GearForm extends Component {
                 nsn: "",
                 size: "",
                 category: "",
+                gear_img: "",
                 editMode: false,
                 apiUrl: "https://capstone-back.herokuapp.com/gear/add",
                 apiAction: 'post'    
@@ -201,6 +203,16 @@ export default class GearForm extends Component {
                             <div className="dz-message">Gear image</div>             
                         </DropzoneComponent>
                     </div>
+                </div>
+
+                <div>
+                    <input
+                        type="text"
+                        name="gear_img"
+                        placeholder='Image'
+                        value={this.state.gear_img}
+                        onChange={this.handleChange}
+                    />
                 </div>
 
                 <div>
